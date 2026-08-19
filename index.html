@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="zhige 的个人主页：AI、RAG、面试智能体与数据分析项目。" />
+  <meta name="theme-color" content="#0b0d10" />
+  <title>zhige — AI · Research · Building</title>
+  <style>
+    :root {
+      --bg: #0b0d10;
+      --panel: #11151a;
+      --text: #f5f7fa;
+      --muted: #a7b0bb;
+      --line: #252b33;
+      --accent: #b8ff65;
+      --max: 1040px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background:
+        radial-gradient(circle at 85% 5%, rgba(184,255,101,.08), transparent 30%),
+        radial-gradient(circle at 10% 40%, rgba(97,218,251,.06), transparent 26%),
+        var(--bg);
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.65;
+    }
+    a { color: inherit; text-decoration: none; }
+    .wrap { width: min(calc(100% - 40px), var(--max)); margin: 0 auto; }
+    nav {
+      position: sticky; top: 0; z-index: 10;
+      backdrop-filter: blur(16px);
+      background: rgba(11,13,16,.76);
+      border-bottom: 1px solid rgba(255,255,255,.04);
+    }
+    nav .wrap { height: 64px; display: flex; align-items: center; justify-content: space-between; }
+    .brand { font-weight: 760; letter-spacing: -.02em; }
+    .navlinks { display: flex; gap: 22px; color: var(--muted); font-size: 14px; }
+    .navlinks a:hover { color: var(--text); }
+    .hero { padding: 110px 0 76px; }
+    .eyebrow { color: var(--accent); font-size: 13px; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; }
+    h1 { margin: 14px 0 20px; font-size: clamp(50px, 9vw, 92px); line-height: .97; letter-spacing: -.055em; max-width: 900px; }
+    .lead { max-width: 700px; color: var(--muted); font-size: clamp(18px, 2.5vw, 22px); }
+    .actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 30px; }
+    .btn { display: inline-flex; align-items: center; gap: 8px; border: 1px solid var(--line); border-radius: 999px; padding: 10px 16px; font-weight: 650; font-size: 14px; transition: .2s ease; }
+    .btn:hover { transform: translateY(-2px); border-color: #46505c; }
+    .btn.primary { background: var(--accent); color: #10130d; border-color: var(--accent); }
+    section { padding: 66px 0; border-top: 1px solid var(--line); }
+    .section-head { display: flex; align-items: end; justify-content: space-between; gap: 20px; margin-bottom: 28px; }
+    h2 { margin: 0; font-size: clamp(30px, 4vw, 42px); letter-spacing: -.035em; }
+    .section-note { color: var(--muted); font-size: 14px; }
+    .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+    .card { min-height: 250px; padding: 26px; border-radius: 22px; border: 1px solid var(--line); background: linear-gradient(180deg, rgba(255,255,255,.035), rgba(255,255,255,.012)); display: flex; flex-direction: column; transition: .22s ease; }
+    .card:hover { transform: translateY(-4px); border-color: #3c4651; background: linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,.018)); }
+    .tag { width: fit-content; color: var(--accent); font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+    .card h3 { margin: 14px 0 8px; font-size: 25px; letter-spacing: -.025em; }
+    .card p { margin: 0; color: var(--muted); }
+    .card .go { margin-top: auto; padding-top: 26px; font-weight: 650; font-size: 14px; }
+    .about { display: grid; grid-template-columns: 180px 1fr; gap: 36px; align-items: start; }
+    .avatar { width: 164px; aspect-ratio: 1; border-radius: 28px; border: 1px solid var(--line); object-fit: cover; }
+    .about p { margin-top: 0; color: var(--muted); font-size: 18px; max-width: 720px; }
+    .skills { display: flex; gap: 9px; flex-wrap: wrap; margin-top: 20px; }
+    .pill { border: 1px solid var(--line); padding: 6px 10px; border-radius: 999px; color: #cbd2da; font-size: 13px; }
+    footer { padding: 42px 0 70px; color: var(--muted); font-size: 14px; }
+    footer .wrap { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+    @media (max-width: 720px) {
+      .hero { padding-top: 82px; }
+      .navlinks a:not(:last-child) { display: none; }
+      .grid { grid-template-columns: 1fr; }
+      .about { grid-template-columns: 1fr; }
+      .avatar { width: 120px; border-radius: 24px; }
+      .section-head { align-items: start; flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="wrap">
+      <a class="brand" href="#top">zhige.</a>
+      <div class="navlinks">
+        <a href="#projects">Projects</a>
+        <a href="#about">About</a>
+        <a href="https://github.com/studyzhige-ui" target="_blank" rel="noreferrer">GitHub ↗</a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="top">
+    <header class="hero wrap">
+      <div class="eyebrow">AI · Research · Building</div>
+      <h1>把复杂的问题，做成真正可用的东西。</h1>
+      <p class="lead">你好，我是 zhige。这里记录我在 AI 应用、RAG、面试智能体与数据分析方向上的项目、实验和学习。</p>
+      <div class="actions">
+        <a class="btn primary" href="#projects">查看项目 ↓</a>
+        <a class="btn" href="https://github.com/studyzhige-ui" target="_blank" rel="noreferrer">GitHub ↗</a>
+      </div>
+    </header>
+
+    <section id="projects">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>Selected Projects</h2>
+          <div class="section-note">一些正在做、正在学、值得留下来的东西。</div>
+        </div>
+        <div class="grid">
+          <a class="card" href="https://github.com/studyzhige-ui/Interview_Copilot" target="_blank" rel="noreferrer">
+            <div class="tag">AI · Interview</div>
+            <h3>Interview Copilot</h3>
+            <p>AI 面试练习与复盘平台，覆盖模拟面试、录音分析、Resume/JD 检索、长期学习记忆、Skills 与 MCP 工具。</p>
+            <div class="go">View repository ↗</div>
+          </a>
+          <a class="card" href="https://github.com/studyzhige-ui/InterReview" target="_blank" rel="noreferrer">
+            <div class="tag">Agent · Review</div>
+            <h3>InterReview</h3>
+            <p>面向技术面试场景的智能复盘系统，把录音或文字稿转化为结构化分析、追问、改进建议与可积累的能力资产。</p>
+            <div class="go">View repository ↗</div>
+          </a>
+          <a class="card" href="https://github.com/studyzhige-ui/all-in-rag" target="_blank" rel="noreferrer">
+            <div class="tag">RAG · Learning</div>
+            <h3>All-in-RAG</h3>
+            <p>围绕检索增强生成的全栈学习与实践：数据处理、索引、混合检索、多模态、评估与工程化应用。</p>
+            <div class="go">View repository ↗</div>
+          </a>
+          <a class="card" href="https://github.com/studyzhige-ui/Python-Data-Analysis-Notes" target="_blank" rel="noreferrer">
+            <div class="tag">Python · Data</div>
+            <h3>Data Analysis Notes</h3>
+            <p>Python 数据分析学习笔记，覆盖基础语法，以及数据读取、评估、清洗、分析、可视化和假设检验。</p>
+            <div class="go">View repository ↗</div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="wrap">
+        <div class="section-head"><h2>About</h2></div>
+        <div class="about">
+          <img class="avatar" src="https://avatars.githubusercontent.com/u/229858708?v=4" alt="zhige GitHub avatar" />
+          <div>
+            <p>我喜欢通过实际项目理解技术。最近的关注点主要在 AI 应用工程、检索增强生成、智能体，以及如何把模型能力变成稳定、清晰、真正能解决问题的产品。</p>
+            <p>这个网站会随着项目一起生长：不仅展示结果，也记录过程。</p>
+            <div class="skills">
+              <span class="pill">AI Applications</span>
+              <span class="pill">RAG</span>
+              <span class="pill">Agents</span>
+              <span class="pill">Python</span>
+              <span class="pill">Data Analysis</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <span>© 2026 zhige</span>
+      <span>Built simply. Improved continuously.</span>
+    </div>
+  </footer>
+</body>
+</html>
