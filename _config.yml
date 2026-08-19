@@ -1,0 +1,17 @@
+title: 徵歌
+description: 用 AI 做出真正很棒的东西。
+url: https://studyzhige-ui.github.io
+lang: zh-CN
+timezone: Asia/Shanghai
+permalink: /blog/:year/:month/:day/:title/
+future: false
+markdown: kramdown
+exclude:
+  - README.md
+  - BLOGGING.md
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: post
