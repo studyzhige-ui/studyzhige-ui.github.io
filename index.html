@@ -2,218 +2,379 @@
 <html lang="zh-CN">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="徵歌的个人网站。用 AI 做出真正值得留下的东西。" />
-  <meta name="theme-color" content="#0d2018" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="description" content="徵歌的个人网站。用 AI，做真正值得留下的东西。" />
+  <meta name="theme-color" content="#16382d" />
   <title>徵歌 · Zhige</title>
   <style>
     :root{
-      --ink:#102018;
-      --paper:#f5f6f2;
-      --muted:#68736d;
-      --line:#d8ddd9;
-      --green:#2a5f49;
-      --max:1180px;
+      --white:#f6f8f5;
+      --soft:rgba(246,248,245,.72);
+      --faint:rgba(246,248,245,.46);
+      --line:rgba(255,255,255,.24);
+      --green:#173c31;
+      --accent:#e8a760;
     }
     *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
-    body{margin:0;background:var(--paper);color:var(--ink);font-family:"PingFang SC","SF Pro Display","Segoe UI","Microsoft YaHei",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
-    a{color:inherit;text-decoration:none}
-    button{font:inherit}
-    .wrap{width:min(calc(100% - 48px),var(--max));margin:auto}
-
-    .nav{position:fixed;inset:0 0 auto;z-index:40;color:#fff;mix-blend-mode:difference;pointer-events:none}
-    .nav .wrap{height:76px;display:flex;align-items:center;justify-content:space-between;pointer-events:auto}
-    .brand{font-weight:700;font-size:14px;letter-spacing:.03em}
-    .nav-links{display:flex;gap:28px;font-size:12px;letter-spacing:.10em;text-transform:uppercase}
-    .nav a{opacity:.78;transition:opacity .2s ease}.nav a:hover{opacity:1}
-
-    .hero{position:relative;min-height:100svh;overflow:hidden;background:#18362a;display:flex;align-items:flex-end}
-    .hero-bg{position:absolute;inset:-3%;background-image:linear-gradient(180deg,rgba(8,19,14,.10),rgba(8,19,14,.16) 45%,rgba(8,19,14,.72)),url('https://images.unsplash.com/photo-1760243875238-fb987488d535?auto=format&fit=crop&fm=jpg&q=90&w=2400');background-size:cover;background-position:center;transform:scale(1.04) translate3d(var(--px,0),var(--py,0),0);transition:transform .18s ease-out;animation:heroDrift 18s ease-in-out infinite alternate}
-    .hero::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 76% 24%,rgba(255,255,255,.18),transparent 24%);pointer-events:none}
-    @keyframes heroDrift{from{filter:saturate(.96) brightness(.98)}to{filter:saturate(1.07) brightness(1.03)}}
-    #particles{position:absolute;inset:0;width:100%;height:100%;z-index:2;pointer-events:none}
-    .hero-content{position:relative;z-index:3;color:#fff;width:100%;padding-bottom:clamp(56px,8vh,92px)}
-    .hero-kicker{font-size:11px;letter-spacing:.20em;text-transform:uppercase;opacity:.72;margin-bottom:20px}
-    h1{margin:0;max-width:1120px;font-size:clamp(54px,7.1vw,104px);line-height:.98;letter-spacing:-.055em;font-weight:620}
-    h1 span{display:block}
-    .hero-meta{margin-top:30px;display:grid;grid-template-columns:minmax(0,640px) 1fr;gap:40px;align-items:end}
-    .hero-meta p{margin:0;font-size:clamp(15px,1.35vw,18px);line-height:1.75;color:rgba(255,255,255,.82);max-width:620px}
-    .scroll-note{justify-self:end;font-size:10px;letter-spacing:.18em;text-transform:uppercase;opacity:.58;white-space:nowrap}
-    .hero-line{position:absolute;left:0;right:0;bottom:0;height:1px;background:rgba(255,255,255,.22);z-index:4}
-
-    .section{padding:112px 0}
-    .section-head{display:grid;grid-template-columns:140px 1fr;gap:30px;align-items:start;margin-bottom:42px}
-    .section-index{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);padding-top:10px}
-    .section-title{margin:0;font-size:clamp(44px,6vw,76px);line-height:1;letter-spacing:-.045em;font-weight:570}
-
-    .work{background:#fff;border-bottom:1px solid var(--line)}
-    .work-row{display:grid;grid-template-columns:140px minmax(0,1fr) minmax(260px,390px);gap:30px;border-top:1px solid var(--line);padding:34px 0 40px;align-items:start}
-    .work-no{font-size:12px;color:var(--muted);padding-top:8px}
-    .work-title{font-size:clamp(40px,5.5vw,72px);line-height:1.03;letter-spacing:-.045em;font-weight:600}
-    .work-side{padding-top:5px}
-    .work-side p{margin:0 0 26px;color:#526059;font-size:15px;line-height:1.8}
-    .link{display:inline-flex;align-items:center;gap:12px;font-size:12px;font-weight:700;letter-spacing:.04em;border-bottom:1px solid currentColor;padding-bottom:4px}
-    .link span{transition:transform .2s ease}.link:hover span{transform:translateX(4px)}
-
-    .inline-quote{margin:74px 0 0 auto;max-width:760px;padding-left:72px;position:relative}
-    .inline-quote::before{content:"";position:absolute;left:0;top:15px;width:46px;height:1px;background:#97a29b}
-    .inline-quote p{margin:0;font-family:Georgia,"Times New Roman",serif;font-size:clamp(24px,3vw,38px);line-height:1.35;color:#24362e}
-    .inline-quote small{display:block;margin-top:16px;color:var(--muted);font-size:10px;letter-spacing:.12em;text-transform:uppercase}
-
-    .blog{background:#0d2118;color:#eaf0ec;min-height:70vh}
-    .blog .section-index{color:#769084}.blog .section-title{color:#f1f5f2}
-    .blog-top{display:flex;justify-content:space-between;gap:24px;align-items:end;margin-bottom:26px}
-    .blog-note{max-width:460px;color:#93a69c;font-size:14px;line-height:1.7}
-    .post-list{border-top:1px solid rgba(255,255,255,.18)}
-    .post-row{width:100%;display:grid;grid-template-columns:130px minmax(0,1fr) 38px;gap:24px;align-items:center;padding:24px 0;border:0;border-bottom:1px solid rgba(255,255,255,.16);background:none;color:inherit;text-align:left;cursor:pointer;transition:opacity .2s ease}
-    .post-row:hover{opacity:.58}
-    .post-date{font-size:11px;color:#789286}.post-title{font-size:clamp(19px,2.2vw,28px);font-weight:520}.post-arrow{text-align:right;font-size:20px;color:#91a69b}
-    .empty{padding:26px 0;border-bottom:1px solid rgba(255,255,255,.16);color:#89a095;font-size:14px;display:flex;justify-content:space-between;gap:20px}
-
-    footer{background:#0d2118;color:#9aada3;padding:0 0 40px}
-    .footer-inner{border-top:1px solid rgba(255,255,255,.14);padding-top:24px;display:flex;justify-content:space-between;gap:22px;align-items:center;font-size:11px}
-    .footer-links{display:flex;gap:24px;text-transform:uppercase;letter-spacing:.10em}.footer-links a{color:#d9e4de}
-
-    dialog{width:min(900px,calc(100% - 30px));max-height:88vh;border:0;padding:0;background:#f6f7f3;color:#102018;box-shadow:0 30px 100px rgba(0,0,0,.35)}
-    dialog::backdrop{background:rgba(5,13,9,.72);backdrop-filter:blur(6px)}
-    .reader{position:relative;padding:clamp(28px,6vw,64px)}
-    .reader-close{position:sticky;float:right;top:0;border:0;background:none;font-size:26px;cursor:pointer;color:#5f6b64}
-    .reader-date{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#748078;margin-bottom:14px}
-    .reader h2{font-size:clamp(34px,5vw,58px);line-height:1.08;letter-spacing:-.04em;margin:0 0 32px;font-weight:600}
-    .article{font-size:16px;line-height:1.9;color:#2d3c35}
-    .article h1,.article h2,.article h3{line-height:1.25;margin:2em 0 .7em}.article h2{font-size:28px}.article h3{font-size:21px}
-    .article img{max-width:100%}.article pre{overflow:auto;background:#102018;color:#edf4ef;padding:18px}.article code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}.article blockquote{margin:28px 0;padding-left:18px;border-left:2px solid #789286;color:#647068}
-
-    .reveal{opacity:0;transform:translateY(20px);transition:opacity .75s ease,transform .75s ease}.reveal.show{opacity:1;transform:none}
-
-    @media(max-width:820px){
-      .wrap{width:min(calc(100% - 30px),var(--max))}
-      .nav .wrap{height:64px}.nav-links{gap:16px}.nav-links a:first-child{display:none}
-      .hero-meta{grid-template-columns:1fr}.scroll-note{display:none}
-      .section{padding:82px 0}.section-head{grid-template-columns:1fr;gap:12px}.section-index{padding-top:0}
-      .work-row{grid-template-columns:48px 1fr;gap:18px}.work-side{grid-column:2}.inline-quote{padding-left:0;margin-top:54px}.inline-quote::before{display:none}
-      .blog-top{align-items:start;flex-direction:column}.post-row{grid-template-columns:86px 1fr 20px;gap:14px}.footer-inner{align-items:flex-start;flex-direction:column}
+    html,body{width:100%;height:100%;margin:0;overflow:hidden}
+    body{
+      font-family:"PingFang SC","SF Pro Display","SF Pro Text","Segoe UI","Microsoft YaHei",system-ui,sans-serif;
+      background:#18372e;
+      color:var(--white);
+      -webkit-font-smoothing:antialiased;
     }
-    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.hero-bg{animation:none;transition:none}.reveal{opacity:1;transform:none;transition:none}}
+    a,button{font:inherit;color:inherit}
+    button{border:0;background:none;padding:0;cursor:pointer}
+
+    .stage{
+      position:relative;
+      width:100%;
+      height:100svh;
+      min-height:540px;
+      isolation:isolate;
+      overflow:hidden;
+      background:#16382d;
+    }
+    .photo{
+      position:absolute;
+      inset:-3%;
+      z-index:-5;
+      background-image:
+        linear-gradient(90deg,rgba(9,24,19,.50) 0%,rgba(9,24,19,.14) 48%,rgba(9,24,19,.15) 100%),
+        linear-gradient(180deg,rgba(8,20,16,.08) 0%,rgba(8,20,16,.10) 55%,rgba(8,20,16,.58) 100%),
+        url('https://images.unsplash.com/photo-1760243875238-fb987488d535?auto=format&fit=crop&fm=jpg&q=90&w=2400');
+      background-size:cover;
+      background-position:center;
+      transform:scale(1.02);
+      transition:transform 1.2s cubic-bezier(.2,.8,.2,1);
+      will-change:transform;
+    }
+    .vignette{
+      position:absolute;
+      inset:0;
+      z-index:-4;
+      background:
+        radial-gradient(circle at 72% 28%,rgba(255,255,255,.15),transparent 18%),
+        linear-gradient(90deg,rgba(6,18,14,.22),transparent 36%);
+      pointer-events:none;
+    }
+    #particles{position:absolute;inset:0;width:100%;height:100%;z-index:-2;pointer-events:none}
+
+    .top{
+      position:absolute;
+      top:0;left:0;right:0;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:clamp(24px,4vw,48px) clamp(24px,5vw,72px);
+      z-index:5;
+    }
+    .identity{
+      display:flex;
+      align-items:baseline;
+      gap:10px;
+      font-size:13px;
+      font-weight:650;
+      letter-spacing:.04em;
+      text-shadow:0 1px 20px rgba(0,0,0,.22);
+    }
+    .identity span:last-child{opacity:.48;font-size:11px;letter-spacing:.12em;text-transform:uppercase}
+    .nav{display:flex;gap:clamp(18px,2.6vw,34px);align-items:center}
+    .nav button,.nav a{
+      position:relative;
+      text-decoration:none;
+      font-size:11px;
+      font-weight:650;
+      letter-spacing:.14em;
+      text-transform:uppercase;
+      opacity:.76;
+      transition:opacity .2s ease,color .2s ease;
+    }
+    .nav button::after,.nav a::after{
+      content:"";position:absolute;left:0;right:100%;bottom:-7px;height:1px;background:currentColor;transition:right .25s ease;
+    }
+    .nav button:hover,.nav a:hover{opacity:1;color:#fff}
+    .nav button:hover::after,.nav a:hover::after{right:0}
+
+    .hero{
+      position:absolute;
+      left:clamp(24px,5vw,72px);
+      right:clamp(24px,5vw,72px);
+      top:50%;
+      transform:translateY(-45%);
+      z-index:3;
+      max-width:min(980px,76vw);
+    }
+    .eyebrow{
+      margin-bottom:18px;
+      font-size:11px;
+      font-weight:650;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+      opacity:.66;
+      animation:rise .9s .08s both cubic-bezier(.22,1,.36,1);
+    }
+    h1{
+      margin:0;
+      max-width:940px;
+      font-size:clamp(52px,7.4vw,112px);
+      line-height:.98;
+      letter-spacing:-.055em;
+      font-weight:620;
+      text-wrap:balance;
+      text-shadow:0 3px 34px rgba(0,0,0,.20);
+      animation:rise 1s .15s both cubic-bezier(.22,1,.36,1);
+    }
+    .sub{
+      margin-top:24px;
+      max-width:600px;
+      font-size:clamp(14px,1.25vw,18px);
+      line-height:1.75;
+      color:var(--soft);
+      animation:rise .9s .26s both cubic-bezier(.22,1,.36,1);
+    }
+    .sub strong{color:#fff;font-weight:560}
+
+    .quote{
+      position:absolute;
+      left:clamp(24px,5vw,72px);
+      bottom:clamp(24px,4vw,48px);
+      z-index:3;
+      max-width:min(600px,58vw);
+      color:rgba(255,255,255,.58);
+      font-family:Georgia,"Times New Roman",serif;
+      font-size:clamp(12px,1vw,15px);
+      line-height:1.55;
+      letter-spacing:.01em;
+      animation:fade 1.2s .5s both;
+    }
+    .quote cite{
+      margin-left:10px;
+      font-family:"PingFang SC","Segoe UI",sans-serif;
+      font-size:9px;
+      font-style:normal;
+      letter-spacing:.13em;
+      text-transform:uppercase;
+      opacity:.62;
+    }
+    .credit{
+      position:absolute;
+      right:clamp(24px,5vw,72px);
+      bottom:clamp(24px,4vw,48px);
+      z-index:3;
+      font-size:9px;
+      letter-spacing:.1em;
+      text-transform:uppercase;
+      color:rgba(255,255,255,.42);
+    }
+    .credit a{color:inherit;text-decoration:none}
+
+    .panel{
+      position:absolute;
+      inset:0 0 0 auto;
+      z-index:20;
+      width:min(520px,92vw);
+      height:100%;
+      background:rgba(12,29,23,.86);
+      border-left:1px solid rgba(255,255,255,.16);
+      backdrop-filter:blur(22px) saturate(120%);
+      transform:translateX(104%);
+      transition:transform .56s cubic-bezier(.22,1,.36,1);
+      padding:clamp(28px,4vw,48px);
+      display:flex;
+      flex-direction:column;
+      box-shadow:-30px 0 80px rgba(0,0,0,.18);
+    }
+    .panel.open{transform:translateX(0)}
+    .panel-head{display:flex;justify-content:space-between;align-items:center;padding-bottom:22px;border-bottom:1px solid rgba(255,255,255,.14)}
+    .panel-head h2{margin:0;font-size:12px;letter-spacing:.18em;text-transform:uppercase;font-weight:650}
+    .close{font-size:22px;line-height:1;opacity:.62;transition:opacity .2s ease,transform .2s ease}
+    .close:hover{opacity:1;transform:rotate(90deg)}
+    .panel-body{flex:1;display:flex;flex-direction:column;justify-content:center;min-height:0}
+    .work-copy{
+      margin:0;
+      font-size:clamp(28px,3vw,44px);
+      line-height:1.25;
+      letter-spacing:-.035em;
+      font-weight:520;
+      max-width:420px;
+    }
+    .work-copy small{display:block;margin-top:22px;color:rgba(255,255,255,.56);font-size:14px;line-height:1.8;letter-spacing:0;font-weight:400}
+    .work-link{margin-top:34px;display:inline-flex;width:max-content;text-decoration:none;font-size:11px;letter-spacing:.13em;text-transform:uppercase;border-bottom:1px solid rgba(255,255,255,.5);padding-bottom:5px}
+
+    .blog-state{color:rgba(255,255,255,.56);font-size:14px;line-height:1.8}
+    .blog-list{overflow:auto;max-height:62vh;padding-right:8px}
+    .blog-item{display:block;text-decoration:none;padding:18px 0;border-bottom:1px solid rgba(255,255,255,.12)}
+    .blog-item:first-child{border-top:1px solid rgba(255,255,255,.12)}
+    .blog-item time{display:block;font-size:10px;letter-spacing:.11em;text-transform:uppercase;color:rgba(255,255,255,.42);margin-bottom:8px}
+    .blog-item strong{display:block;font-size:18px;font-weight:520;line-height:1.4}
+    .blog-item:hover strong{color:#fff}
+    .blog-actions{margin-top:26px;display:flex;gap:18px;flex-wrap:wrap}
+    .blog-actions a{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.62);text-decoration:none;border-bottom:1px solid currentColor;padding-bottom:4px}
+
+    .scrim{
+      position:absolute;inset:0;z-index:15;background:rgba(0,0,0,.28);opacity:0;pointer-events:none;transition:opacity .35s ease;
+      backdrop-filter:blur(1px);
+    }
+    .scrim.show{opacity:1;pointer-events:auto}
+
+    @keyframes rise{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
+    @keyframes fade{from{opacity:0}to{opacity:1}}
+
+    @media(max-width:760px){
+      .stage{min-height:100svh}
+      .top{padding:20px 18px}
+      .identity span:last-child{display:none}
+      .nav{gap:16px}
+      .hero{left:18px;right:18px;max-width:none;top:48%;transform:translateY(-50%)}
+      h1{font-size:clamp(48px,15vw,78px);max-width:92vw}
+      .sub{max-width:88vw;font-size:14px;line-height:1.65}
+      .quote{left:18px;bottom:22px;max-width:70vw;font-size:11px}
+      .quote cite{display:none}
+      .credit{right:18px;bottom:22px;font-size:8px}
+      .panel{width:100vw;border-left:0}
+    }
+    @media(max-height:650px) and (min-width:761px){
+      .hero{transform:translateY(-42%)}
+      h1{font-size:clamp(46px,7vw,82px)}
+      .sub{margin-top:16px}
+      .quote{bottom:20px}
+      .credit{bottom:20px}
+    }
+    @media(prefers-reduced-motion:reduce){
+      *,*::before,*::after{animation:none!important;transition:none!important}
+    }
   </style>
 </head>
 <body>
-  <header class="nav">
-    <div class="wrap">
-      <a class="brand" href="#top">徵歌 / ZHIGE</a>
-      <nav class="nav-links">
-        <a href="#work">Work</a>
-        <a href="#blog">Blog</a>
+  <main class="stage" id="stage">
+    <div class="photo" id="photo"></div>
+    <div class="vignette"></div>
+    <canvas id="particles" aria-hidden="true"></canvas>
+
+    <header class="top">
+      <div class="identity"><span>徵歌</span><span>Zhige</span></div>
+      <nav class="nav" aria-label="Primary navigation">
+        <button type="button" data-open="work">Work</button>
+        <button type="button" data-open="blog">Blog</button>
         <a href="https://github.com/studyzhige-ui" target="_blank" rel="noreferrer">GitHub</a>
       </nav>
-    </div>
-  </header>
+    </header>
 
-  <main id="top">
-    <section class="hero">
-      <div class="hero-bg" aria-hidden="true"></div>
-      <canvas id="particles" aria-hidden="true"></canvas>
-      <div class="wrap hero-content">
-        <div class="hero-kicker">AI · PRODUCT · BUILDING</div>
-        <h1><span>用 AI，</span><span>做真正值得留下的东西。</span></h1>
-        <div class="hero-meta">
-          <p>我是徵歌。做 AI 产品，也记录那些值得留下的项目与想法。</p>
-          <div class="scroll-note">Scroll to explore ↓</div>
-        </div>
-      </div>
-      <div class="hero-line"></div>
+    <section class="hero" aria-labelledby="headline">
+      <div class="eyebrow">AI · Product · Building</div>
+      <h1 id="headline">用 AI，做真正值得留下的东西。</h1>
+      <p class="sub">我是徵歌。想把 AI 做成<strong>真正值得使用、值得长期留下</strong>的产品，而不是只停留在“能跑起来”。</p>
     </section>
 
-    <section class="section work" id="work">
-      <div class="wrap">
-        <div class="section-head reveal">
-          <div class="section-index">01 / Work</div>
-          <h2 class="section-title">Selected work</h2>
-        </div>
+    <div class="quote">“Man muss noch Chaos in sich haben, um einen tanzenden Stern gebären zu können.” <cite>Friedrich Nietzsche</cite></div>
+    <div class="credit">Photo via <a href="https://unsplash.com" target="_blank" rel="noreferrer">Unsplash</a></div>
 
-        <article class="work-row reveal">
-          <div class="work-no">01</div>
-          <div class="work-title">Interview Copilot</div>
-          <div class="work-side">
-            <p>AI 面试练习与复盘平台。围绕真实岗位，把模拟面试、录音分析、简历 / JD 检索与长期学习记忆连接起来。</p>
-            <a class="link" href="https://github.com/studyzhige-ui/Interview_Copilot" target="_blank" rel="noreferrer">View project <span>↗</span></a>
-          </div>
-        </article>
+    <div class="scrim" id="scrim"></div>
 
-        <aside class="inline-quote reveal">
-          <p>“Man muss noch Chaos in sich haben, um einen tanzenden Stern gebären zu können.”</p>
-          <small>Friedrich Nietzsche · Also sprach Zarathustra, Vorrede 5</small>
-        </aside>
+    <aside class="panel" id="workPanel" aria-hidden="true">
+      <div class="panel-head"><h2>Work</h2><button class="close" type="button" aria-label="关闭">×</button></div>
+      <div class="panel-body">
+        <p class="work-copy">我现在主要做 AI 产品与工具。<small>关注长期可用性、真实体验和复杂系统如何被做得更简单。这里不列仓库清单，只保留正在形成的方向。</small></p>
+        <a class="work-link" href="https://github.com/studyzhige-ui" target="_blank" rel="noreferrer">View GitHub ↗</a>
       </div>
-    </section>
+    </aside>
 
-    <section class="section blog" id="blog">
-      <div class="wrap">
-        <div class="blog-top reveal">
-          <div>
-            <div class="section-index">02 / Blog</div>
-            <h2 class="section-title">Writing</h2>
-          </div>
-          <div class="blog-note">文章都来自仓库里的 Markdown。没有文章时，这里保持安静；有文章时，会自动出现。</div>
-        </div>
-        <div class="post-list reveal" id="postList">
-          <div class="empty"><span>正在读取文章…</span><span>_posts/</span></div>
+    <aside class="panel" id="blogPanel" aria-hidden="true">
+      <div class="panel-head"><h2>Blog</h2><button class="close" type="button" aria-label="关闭">×</button></div>
+      <div class="panel-body">
+        <div id="blogContent" class="blog-state">正在读取文章…</div>
+        <div class="blog-actions">
+          <a href="https://github.com/studyzhige-ui/studyzhige-ui.github.io/new/main/_posts" target="_blank" rel="noreferrer">Write</a>
+          <a href="https://github.com/studyzhige-ui/studyzhige-ui.github.io/tree/main/_posts" target="_blank" rel="noreferrer">Manage</a>
         </div>
       </div>
-    </section>
+    </aside>
   </main>
 
-  <footer>
-    <div class="wrap footer-inner">
-      <span>© 2026 徵歌</span>
-      <div class="footer-links"><a href="#top">Top</a><a href="https://github.com/studyzhige-ui" target="_blank" rel="noreferrer">GitHub</a></div>
-    </div>
-  </footer>
-
-  <dialog id="reader">
-    <div class="reader">
-      <button class="reader-close" id="readerClose" aria-label="关闭">×</button>
-      <div class="reader-date" id="readerDate"></div>
-      <h2 id="readerTitle"></h2>
-      <div class="article" id="readerBody"></div>
-    </div>
-  </dialog>
-
-  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
   <script>
-    const hero = document.querySelector('.hero');
-    const bg = document.querySelector('.hero-bg');
-    hero.addEventListener('pointermove', e => {
-      const r = hero.getBoundingClientRect();
-      const x = ((e.clientX-r.left)/r.width-.5)*-10;
-      const y = ((e.clientY-r.top)/r.height-.5)*-8;
-      bg.style.setProperty('--px', x+'px');
-      bg.style.setProperty('--py', y+'px');
+    const stage = document.getElementById('stage');
+    const photo = document.getElementById('photo');
+    const scrim = document.getElementById('scrim');
+    const panels = {
+      work: document.getElementById('workPanel'),
+      blog: document.getElementById('blogPanel')
+    };
+
+    function closePanels(){
+      Object.values(panels).forEach(p=>{p.classList.remove('open');p.setAttribute('aria-hidden','true')});
+      scrim.classList.remove('show');
+    }
+    function openPanel(name){
+      closePanels();
+      const p=panels[name];
+      if(!p) return;
+      p.classList.add('open');p.setAttribute('aria-hidden','false');scrim.classList.add('show');
+      if(name==='blog') loadBlog();
+    }
+    document.querySelectorAll('[data-open]').forEach(el=>el.addEventListener('click',()=>openPanel(el.dataset.open)));
+    document.querySelectorAll('.close').forEach(el=>el.addEventListener('click',closePanels));
+    scrim.addEventListener('click',closePanels);
+    window.addEventListener('keydown',e=>{if(e.key==='Escape')closePanels()});
+
+    // Subtle image parallax.
+    stage.addEventListener('pointermove',e=>{
+      if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      const x=(e.clientX/innerWidth-.5)*7;
+      const y=(e.clientY/innerHeight-.5)*5;
+      photo.style.transform=`scale(1.035) translate(${x}px,${y}px)`;
     });
-    hero.addEventListener('pointerleave',()=>{bg.style.setProperty('--px','0px');bg.style.setProperty('--py','0px')});
+    stage.addEventListener('pointerleave',()=>photo.style.transform='scale(1.02)');
 
-    const canvas=document.getElementById('particles'),ctx=canvas.getContext('2d');
-    let dots=[],mouse={x:-9999,y:-9999};
-    function resize(){const dpr=Math.min(devicePixelRatio||1,2);canvas.width=innerWidth*dpr;canvas.height=innerHeight*dpr;canvas.style.width=innerWidth+'px';canvas.style.height=innerHeight+'px';ctx.setTransform(dpr,0,0,dpr,0,0);dots=Array.from({length:Math.min(80,Math.floor(innerWidth/22))},()=>({x:Math.random()*innerWidth,y:Math.random()*innerHeight,vx:(Math.random()-.5)*.14,vy:(Math.random()-.5)*.14,r:Math.random()*1.4+.5,a:Math.random()*.45+.2}))}
-    function tick(){ctx.clearRect(0,0,innerWidth,innerHeight);for(const p of dots){p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>innerWidth)p.vx*=-1;if(p.y<0||p.y>innerHeight)p.vy*=-1;const dx=p.x-mouse.x,dy=p.y-mouse.y,d=Math.hypot(dx,dy);if(d<120){p.x+=dx/d*.32;p.y+=dy/d*.32}ctx.beginPath();ctx.fillStyle=`rgba(255,255,255,${p.a})`;ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fill()}for(let i=0;i<dots.length;i++){for(let j=i+1;j<dots.length;j++){const a=dots[i],b=dots[j],d=Math.hypot(a.x-b.x,a.y-b.y);if(d<86){ctx.beginPath();ctx.strokeStyle=`rgba(255,255,255,${(1-d/86)*.11})`;ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);ctx.stroke()}}}requestAnimationFrame(tick)}
-    hero.addEventListener('pointermove',e=>{mouse.x=e.clientX;mouse.y=e.clientY});hero.addEventListener('pointerleave',()=>mouse={x:-9999,y:-9999});addEventListener('resize',resize);resize();if(!matchMedia('(prefers-reduced-motion: reduce)').matches)tick();
+    // Small particle field: stars/dust rather than a heavy effect.
+    const canvas=document.getElementById('particles');
+    const ctx=canvas.getContext('2d');
+    let dots=[], mouse={x:-9999,y:-9999};
+    function resize(){
+      const d=Math.min(devicePixelRatio||1,2);canvas.width=innerWidth*d;canvas.height=innerHeight*d;canvas.style.width=innerWidth+'px';canvas.style.height=innerHeight+'px';ctx.setTransform(d,0,0,d,0,0);
+      const count=Math.max(34,Math.min(88,Math.floor(innerWidth*innerHeight/18500)));
+      dots=Array.from({length:count},()=>({x:Math.random()*innerWidth,y:Math.random()*innerHeight,r:Math.random()*1.15+.35,vx:(Math.random()-.5)*.055,vy:(Math.random()-.5)*.055,a:Math.random()*.55+.20}));
+    }
+    stage.addEventListener('pointermove',e=>{mouse.x=e.clientX;mouse.y=e.clientY});
+    stage.addEventListener('pointerleave',()=>{mouse.x=-9999;mouse.y=-9999});
+    function frame(){
+      ctx.clearRect(0,0,innerWidth,innerHeight);
+      for(const p of dots){
+        p.x+=p.vx;p.y+=p.vy;
+        if(p.x<0)p.x=innerWidth;if(p.x>innerWidth)p.x=0;if(p.y<0)p.y=innerHeight;if(p.y>innerHeight)p.y=0;
+        const dx=p.x-mouse.x,dy=p.y-mouse.y,dist=Math.hypot(dx,dy);
+        if(dist<105&&dist>1){p.x+=(dx/dist)*.14;p.y+=(dy/dist)*.14}
+        ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle=`rgba(255,255,255,${p.a})`;ctx.fill();
+      }
+      requestAnimationFrame(frame);
+    }
+    resize();addEventListener('resize',resize);frame();
 
-    const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('show')}),{threshold:.12});document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
-
-    const API='https://api.github.com/repos/studyzhige-ui/studyzhige-ui.github.io/contents/_posts?ref=main';
-    const postList=document.getElementById('postList');
-    const reader=document.getElementById('reader');
-    const readerTitle=document.getElementById('readerTitle');
-    const readerDate=document.getElementById('readerDate');
-    const readerBody=document.getElementById('readerBody');
-    let posts=[];
-    function parsePost(text,name){let meta={},body=text;if(text.startsWith('---')){const end=text.indexOf('\n---',3);if(end>-1){text.slice(3,end).trim().split('\n').forEach(line=>{const i=line.indexOf(':');if(i>-1)meta[line.slice(0,i).trim()]=line.slice(i+1).trim().replace(/^['\"]|['\"]$/g,'')});body=text.slice(end+4).trim()}}return{title:meta.title||name.replace(/^\d{4}-\d{2}-\d{2}-/,'').replace(/\.md$/,'').replace(/-/g,' '),description:meta.description||'',tags:meta.tags||'',date:name.slice(0,10),body}}
-    async function loadPosts(){try{const r=await fetch(API,{headers:{Accept:'application/vnd.github+json'}});if(r.status===404){renderEmpty();return}if(!r.ok)throw new Error('api');const files=(await r.json()).filter(f=>f.name.endsWith('.md'));if(!files.length){renderEmpty();return}posts=await Promise.all(files.map(async f=>{const t=await fetch(f.download_url).then(x=>x.text());return{...parsePost(t,f.name),name:f.name}}));posts.sort((a,b)=>b.date.localeCompare(a.date));postList.innerHTML=posts.map((p,i)=>`<button class="post-row" data-i="${i}"><span class="post-date">${p.date}</span><span class="post-title">${p.title}</span><span class="post-arrow">↗</span></button>`).join('');postList.querySelectorAll('.post-row').forEach(btn=>btn.addEventListener('click',()=>openPost(+btn.dataset.i)))}catch(e){postList.innerHTML='<div class="empty"><span>文章暂时无法载入。</span><span>稍后再试</span></div>'}}
-    function renderEmpty(){postList.innerHTML='<div class="empty"><span>还没有文章。</span><span>等待第一篇</span></div>'}
-    function openPost(i){const p=posts[i];readerTitle.textContent=p.title;readerDate.textContent=p.date;readerBody.innerHTML=window.marked?marked.parse(p.body):`<pre>${p.body.replace(/[&<>]/g,s=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[s]))}</pre>`;reader.showModal();reader.scrollTop=0}
-    document.getElementById('readerClose').addEventListener('click',()=>reader.close());reader.addEventListener('click',e=>{if(e.target===reader)reader.close()});
-    loadPosts();
+    // Blog is data, not a separate page. It reads real Markdown files from _posts.
+    let blogLoaded=false;
+    async function loadBlog(){
+      if(blogLoaded) return;
+      blogLoaded=true;
+      const box=document.getElementById('blogContent');
+      try{
+        const res=await fetch('https://api.github.com/repos/studyzhige-ui/studyzhige-ui.github.io/contents/_posts?ref=main',{headers:{Accept:'application/vnd.github+json'}});
+        if(res.status===404){box.innerHTML='还没有文章。';return}
+        if(!res.ok) throw new Error('GitHub API '+res.status);
+        const files=(await res.json()).filter(f=>/\.md$/i.test(f.name)).sort((a,b)=>b.name.localeCompare(a.name));
+        if(!files.length){box.innerHTML='还没有文章。';return}
+        box.className='blog-list';box.innerHTML='';
+        for(const f of files.slice(0,10)){
+          const raw=await fetch(f.download_url).then(r=>r.text());
+          const fm=(raw.match(/^---\s*\n([\s\S]*?)\n---/)||[])[1]||'';
+          const title=(fm.match(/^title:\s*["']?(.*?)["']?\s*$/m)||[])[1]||f.name.replace(/^\d{4}-\d{2}-\d{2}-/,'').replace(/\.md$/,'').replace(/[-_]/g,' ');
+          const date=(f.name.match(/^(\d{4}-\d{2}-\d{2})/)||[])[1]||'';
+          const a=document.createElement('a');a.className='blog-item';a.href=f.html_url;a.target='_blank';a.rel='noreferrer';a.innerHTML=`<time>${date}</time><strong>${escapeHtml(title)}</strong>`;box.appendChild(a);
+        }
+      }catch(err){
+        box.className='blog-state';box.textContent='文章暂时无法读取，请稍后再试。';
+      }
+    }
+    function escapeHtml(s){return String(s).replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]))}
   </script>
 </body>
 </html>
